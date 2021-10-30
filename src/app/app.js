@@ -3,14 +3,14 @@ const express = require('express');
 //importando o mongoose para conexão com banc
 const mongoose = require('mongoose');
 
-require("./database/index");
+require("../database/index");
 require("./models/Usuario");
 const Usuario = mongoose.model('usuario');
 
 const app = express();
 //habilitando o uso do json
 app.use(express.json());
-
+  
 
 //listar todos usuarios 
 app.get("/", (req, res) => {
