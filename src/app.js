@@ -18,7 +18,7 @@ mongoose.connect('mongodb+srv://root:root@clusterdeploy.hl91e.mongodb.net/agenda
   console.log("Erro: A conexão com MongoDB não foi realizada com sucesso!");
 });
 
-
+//listar todos usuarios 
 app.get("/", (req, res) => {
   Usuario.find({}).then((usuario) => {
     return res.json(usuario);
@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
   })
 
 });
-
+//criar usuario
 app.post("/usuario", (req, res) => {
   const usuario = Usuario.create(req.body, (err) => {
     if (err) return res.status(400).json({
