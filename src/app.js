@@ -20,7 +20,15 @@ mongoose.connect('mongodb+srv://root:root@clusterdeploy.hl91e.mongodb.net/agenda
 
 
 app.get("/", (req, res) => {
-  return res.json({ titulo: "Criar api" });
+  Usuario.find({}).then((usuario) => {
+    return res.json(usuario);
+  }).catch((erro)=>{
+    return res.status(400).json({
+      error:true,
+      menssage:"Nenhum usuário encotrado!"
+    })
+  })
+
 });
 
 app.post("/usuario", (req, res) => {
