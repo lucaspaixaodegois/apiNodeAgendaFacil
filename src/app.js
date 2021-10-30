@@ -61,6 +61,7 @@ app.get("/usuario/:id", (req, res) => {
   })
 
 });
+
 //editar usuario
 app.put("/usuario/:id", (req, res) => {
 
@@ -77,6 +78,22 @@ app.put("/usuario/:id", (req, res) => {
   });
 });
 
+
+//editar usuario
+app.delete("/usuario/:id", (req, res) => {
+
+  const usuario = Usuario.deleteOne({ _id: req.params.id },(err) => {
+    if (err) return res.status(400).json({
+      error: true,
+      message: "Error:Usuário não foi deletado com sucesso!"
+    });
+
+    return res.json({
+      error: false,
+      message: "Usuário deletado com sucesso!",
+    });
+  });
+});
 
 
 app.listen(8080, () => {
