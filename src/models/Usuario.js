@@ -1,21 +1,24 @@
+//importando o mongoose
 const mongoose = require('mongoose');
 
+//defindo  o esquema/tabela/entidade e seus campos e tipos.
 const Usuario = new mongoose.Schema({
-  nome: {
-    type: String,
-    require: true
 
+  nome: {//propriedade
+    type: String,//tipo string 
+    require: true //preenchimento obrigatorio
   },
-  cpf: {
-    type: String,
-    require: true
 
+  cpf: {//propriedade
+    type: String,//tipo string 
+    require: true //preenchimento obrigatorio
   }
 
 },
   {
-    timestamps: true,
+    timestamps: true,//salvar diaHora de alteracao/criacao
   }
 
 );
-mongoose.model('usuario',Usuario);
+//definindo o model usuario no banco com mongoose
+mongoose.model('usuario', Usuario);

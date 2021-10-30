@@ -1,22 +1,15 @@
-const express = require('express');//importando o express
-const mongoose = require('mongoose');//importando o mongoose para conexão com banc
-const res = require('express/lib/response');
+//importando o express
+const express = require('express');
+//importando o mongoose para conexão com banc
+const mongoose = require('mongoose');
 
+require("./database/index");
 require("./models/Usuario");
 const Usuario = mongoose.model('usuario');
 
 const app = express();
 //habilitando o uso do json
 app.use(express.json());
-//conexao com mongodb atlas
-mongoose.connect('mongodb+srv://root:root@clusterdeploy.hl91e.mongodb.net/agendaFacil', {
-  useNewUrlParser: true,
-  useUnifiedTopoLogy: true
-}).then(() => {
-  console.log("Conexão com MongoDB realizada com sucesso!");
-}).catch((erro) => {
-  console.log("Erro: A conexão com MongoDB não foi realizada com sucesso!");
-});
 
 
 //listar todos usuarios 
@@ -82,7 +75,7 @@ app.put("/usuario/:id", (req, res) => {
 //editar usuario
 app.delete("/usuario/:id", (req, res) => {
 
-  const usuario = Usuario.deleteOne({ _id: req.params.id },(err) => {
+  const usuario = Usuario.deleteOne({ _id: req.params.id }, (err) => {
     if (err) return res.status(400).json({
       error: true,
       message: "Error:Usuário não foi deletado com sucesso!"
