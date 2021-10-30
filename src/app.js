@@ -18,18 +18,37 @@ mongoose.connect('mongodb+srv://root:root@clusterdeploy.hl91e.mongodb.net/agenda
   console.log("Erro: A conexão com MongoDB não foi realizada com sucesso!");
 });
 
+//buscar por id
+app.get("/usuario/:id", (req, res) => {
+
+  Usuario.findById(req.params.id ).then((usuario) => {
+    return res.json(usuario);
+  }).catch((erro) => {
+    return res.status(400).json({
+      error: true,
+      menssage: "Nenhum usuário encotrado!"
+    })
+  })
+
+
+
+  // return res.json({ id: req.params.id })
+
+});
+
 //listar todos usuarios 
 app.get("/", (req, res) => {
   Usuario.find({}).then((usuario) => {
     return res.json(usuario);
-  }).catch((erro)=>{
+  }).catch((erro) => {
     return res.status(400).json({
-      error:true,
-      menssage:"Nenhum usuário encotrado!"
+      error: true,
+      menssage: "Nenhum usuário encotrado!"
     })
   })
 
 });
+
 //criar usuario
 app.post("/usuario", (req, res) => {
   const usuario = Usuario.create(req.body, (err) => {
