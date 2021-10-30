@@ -30,9 +30,9 @@ app.post("/usuario", (req, res) => {
       menssage: "Error: Usuário nao foi cadastrado com sucesso!"
     })
 
-    return res.status(400).json({
+    return res.status(201).json({
       error: false,
-      menssage: "Error: Usuário cadastrado com sucesso!"
+      menssage: "Usuário cadastrado com sucesso!"
     })
 
   })
